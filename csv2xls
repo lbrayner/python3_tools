@@ -23,4 +23,5 @@ for arg in args:
         continue
 
     csv_file = pd.read_csv(arg)
-    csv_file.to_excel(file_name + ".xls",index = False)
+    csv_file.to_excel(file_name + ".xls",index = False
+        ,header = False)
