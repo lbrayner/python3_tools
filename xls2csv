@@ -22,5 +22,5 @@ for arg in args:
         sys.stderr.write("Skipping %s.\n" % arg)
         continue
 
-    xls_file = pd.read_excel(arg)
+    xls_file = pd.read_excel(arg,dtype="str")
     xls_file.to_csv(file_name + ".csv", index = False)
