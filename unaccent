@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+
+import unidecode
+
+script = sys.argv[0]
+args = sys.argv[1:]
+
+def usage():
+    return "%s FILE\n" % os.path.basename(script)
+
+if len(args) != 1:
+    sys.stderr.write(usage())
+    sys.exit(1)
+
+arg = args[0]
+
+file_to_unaccent = open(arg)
+
+for line in file_to_unaccent:
+    print(unidecode.unidecode(line),
+        end='', flush=True)
+
+file_to_unaccent.close()
