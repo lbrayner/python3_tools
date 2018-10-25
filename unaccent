@@ -15,14 +15,20 @@ if len(args) < 1:
     sys.stderr.write(usage())
     sys.exit(1)
 
-for arg in args:
-    if arg == "-":
-        file_to_unaccent = sys.stdin
-    else:
-        file_to_unaccent = open(arg)
-
-    for line in file_to_unaccent:
+def unaccent(file):
+    for line in file:
         print(unidecode.unidecode(line),
             end='', flush=True)
 
-    file_to_unaccent.close()
+    file.close()
+
+if len(args) == 1:
+    arg = args[0]
+
+    if arg == "-":
+        unaccent(sys.stdin) # '-' reads from standard input
+        sys.exit(0)
+
+for arg in args:
+    file_to_unaccent = open(arg)
+    unaccent(file_to_unaccent)
